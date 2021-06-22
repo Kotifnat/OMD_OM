@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import CBU
 
-# Register your models here.
+
+@admin.register(CBU)
+class CBUModelAdmin(admin.ModelAdmin):
+    pass
