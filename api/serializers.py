@@ -26,13 +26,17 @@ class ReachField(Field):
         return value
 
     def to_internal_value(self, data):
+        self.validate_reach(data)
+        return {"reach": ", ".join([str(i) for i in data])}
+
+    @staticmethod
+    def validate_reach(data):
         if data != sorted(data, reverse=True):
             raise ValidationError('Значения должны убывать!')
         if len(data) != 10:
             raise ValidationError('Должно быть 10 значений!')
         if any(i < 0 or i > 100 for i in data):
             raise ValidationError('Охват не может быть менее 0 или более 100%')
-        return {"reach": ", ".join([str(i) for i in data])}
 
 
 class CBUModelSerializer(ModelSerializer):
