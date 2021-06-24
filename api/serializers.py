@@ -27,6 +27,11 @@ class CBUModelSerializer(ModelSerializer):
     def validate(self, data):
         if data['unit'] < 0:
             raise ValidationError({'unit': "Значение должно быть больше 0!"})
+        try:
+            for i in data['reach']:
+                float(i)
+        except:
+            raise ValidationError({'reach': f'Необходимо указать число, вместо {i}'})
         if data['reach'] != sorted(data['reach'], reverse=True):
             raise ValidationError({'reach': 'Значения должны убывать!'})
         if len(data['reach']) != 10:
