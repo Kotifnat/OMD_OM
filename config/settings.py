@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-va1rdo_&-5y+9bgen4h&ac^ctp&vav#a)s#t^x*5gm6dpmporf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['omd-test-backend.herokuapp.com', '127.0.0.1',]
+ALLOWED_HOSTS = ['omd-test-backend.herokuapp.com', '127.0.0.1', ]
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # 3d packages
     'rest_framework',
     'rest_framework_simplejwt',
+    'corsheaders',
 
     # local
     'api',
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -125,7 +127,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
